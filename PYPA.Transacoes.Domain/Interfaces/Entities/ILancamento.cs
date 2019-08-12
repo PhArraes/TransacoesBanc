@@ -9,5 +9,6 @@ namespace PYPA.Transacoes.Domain.Interfaces.Entities
         TipoDeLancamento Tipo { get; }
         Guid ContaId { get; }
         Decimal Valor { get; }
+        DateTime DataDoLancamento { get; }
     }
 }

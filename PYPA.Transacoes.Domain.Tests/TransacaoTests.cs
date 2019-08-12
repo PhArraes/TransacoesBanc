@@ -94,19 +94,65 @@ namespace PYPA.Transacoes.Domain.Tests
             var lancamentos = new List<ILancamento>();
             var contaOrigem = contaOrigemMock.Object;
             decimal valor = 123m;
+
+            contaOrigemMock.Setup(c => c.AdicionarLancamento(It.IsAny<ILancamento>())).Callback<ILancamento>(l => {
+                lancamentos.Add(l);
+            });
+
             var transacao = new Transacao(contaOrigem,
                                         contaDestinoMock.Object,
                                         valor,
                                         dateTimeProviderMock.Object);
 
-            contaOrigemMock.Setup(c => c.AdicionarLancamento(It.IsAny<ILancamento>())).Callback<ILancamento>(l => lancamentos.Add(l) );
+            var lancamento = lancamentos.FirstOrDefault();
+            lancamento.Should().NotBeNull();
+            lancamento.CreatedAt.Should().Be(now);
+            lancamento.DataDoLancamento.Should().Be(now);
+            lancamento.ContaId.Should().Be(contaOrigemId);
+            lancamento.Valor.Should().Be(valor);
+            lancamento.Tipo.Should().Be(TipoDeLancamento.Debito);
+        }
+
+        [Fact]
+        public void Transacao_Deve_Adicionar_Um_Lancamento_De_Credito_Na_Conta_Destino_Com_Valor_Igual_Ao_Valor_Da_Transacao()
+        {
+            var lancamentos = new List<ILancamento>();
+            var contaDestino = contaDestinoMock.Object;
+            decimal valor = 123m;
+
+            contaDestinoMock.Setup(c => c.AdicionarLancamento(It.IsAny<ILancamento>())).Callback<ILancamento>(l => {
+                lancamentos.Add(l);
+            });
+
+            var transacao = new Transacao(contaOrigemMock.Object,
+                                        contaDestino,
+                                        valor,
+                                        dateTimeProviderMock.Object);
 
             var lancamento = lancamentos.FirstOrDefault();
             lancamento.Should().NotBeNull();
             lancamento.CreatedAt.Should().Be(now);
-            lancamento.ContaId.Should().Be(contaOrigemId);
+            lancamento.DataDoLancamento.Should().Be(now);
+            lancamento.ContaId.Should().Be(contaDestinoId);
             lancamento.Valor.Should().Be(valor);
-            lancamento.Tipo.Should().Be(TipoDeLancamento.Debito);
+            lancamento.Tipo.Should().Be(TipoDeLancamento.Credito);
+        }
+        [Fact]
+        public void A_Trannsacao_Nao_Deve_Ser_Criada_Se_A_Conta_Origem_Nao_Tiver_Saldo()
+        {
+            var lancamentos = new List<ILancamento>();
+            var contaOrigem = contaOrigemMock.Object;
+            decimal valor = 123m;
+            decimal saldoContaOrigem = 100m;
+
+            contaOrigemMock.SetupGet(c => c.Saldo).Returns(saldoContaOrigem);
+
+            contaOrigemMock.Setup(c => c.AdicionarLancamento(It.IsAny<ILancamento>())).Throws(new Exception("Lançamento inválido"));
+            
+            var ex = Assert.Throws<Exception>(() => new Transacao(contaOrigem,
+                                        contaDestinoMock.Object,
+                                        valor,
+                                        dateTimeProviderMock.Object));
         }
     }
 }

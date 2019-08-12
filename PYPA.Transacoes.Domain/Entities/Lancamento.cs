@@ -12,10 +12,12 @@ namespace PYPA.Transacoes.Domain.Entities
         public TipoDeLancamento Tipo { get; private set; }
         public Guid ContaId { get; private set; }
         public Decimal Valor { get; private set; }
-        public Lancamento(IConta conta, TipoDeLancamento tipo, Decimal valor, IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
+        public DateTime DataDoLancamento { get; private set; }
+        public Lancamento(IConta conta, TipoDeLancamento tipo, Decimal valor, DateTime dataDoLancamento, IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
         {
             this.Tipo = tipo;
             this.ContaId = conta.Id;
+            this.DataDoLancamento = dataDoLancamento;
             this.DefinirValor(valor);
         }
 

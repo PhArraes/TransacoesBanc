@@ -12,7 +12,7 @@ namespace PYPA.Transacoes.Domain.Factories
         public static ILancamento Create(IConta conta, TipoDeLancamento tipo, decimal valor)
         {
             var dateProv = new DateTimeProvider();
-            return new Lancamento(conta, tipo, valor, dateProv);
+            return new Lancamento(conta, tipo, valor, DateTime.Now, dateProv);
         }
     }
 }

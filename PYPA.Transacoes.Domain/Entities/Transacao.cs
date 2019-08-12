@@ -21,9 +21,21 @@ namespace PYPA.Transacoes.Domain.Entities
             this.ContaDestinoId = contaDestino.Id;
             this.ContaDestino = contaDestino;
             DefinirValor(valor);
+            CriarLancamentoNaContaOrigem(contaOrigem, valor, timeProvider);
+            CriarLancamentoNaContaDestino(contaDestino, valor, timeProvider);
         }
 
-        private void CriarLancamentoNaContaOrigem(IConta conta, decimal valor) { }
+        private void CriarLancamentoNaContaOrigem(IConta conta, decimal valor, IDateTimeProvider timeProvider) {
+            var lancamento = new Lancamento(conta, TipoDeLancamento.Debito, valor, this.CreatedAt, timeProvider);
+            conta.AdicionarLancamento(lancamento);
+        }
+
+
+        private void CriarLancamentoNaContaDestino(IConta conta, decimal valor, IDateTimeProvider timeProvider)
+        {
+            var lancamento = new Lancamento(conta, TipoDeLancamento.Credito, valor, this.CreatedAt, timeProvider);
+            conta.AdicionarLancamento(lancamento);
+        }
 
         private void DefinirValor(decimal valor)
         {
