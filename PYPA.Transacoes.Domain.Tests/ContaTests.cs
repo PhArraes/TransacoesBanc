@@ -2,7 +2,6 @@
 using Moq;
 using PYPA.Transacoes.Domain.Core;
 using PYPA.Transacoes.Domain.Entities;
-using PYPA.Transacoes.Domain.Factories;
 using PYPA.Transacoes.Domain.Interfaces.Core;
 using PYPA.Transacoes.Domain.Interfaces.Entities;
 using System;
@@ -20,7 +19,6 @@ namespace PYPA.Transacoes.Domain.Tests
         Mock<IDateTimeProvider> dateTimeProviderMock = new Mock<IDateTimeProvider>();
         Mock<ILancamento> lançamentoDébitoMock = new Mock<ILancamento>();
         Mock<ILancamento> lançamentoCréditoMock = new Mock<ILancamento>();
-        Mock<LancamentoFactory> lançamentoFactoryMock = new Mock<LancamentoFactory>();
 
         public ContaTests()
         {
