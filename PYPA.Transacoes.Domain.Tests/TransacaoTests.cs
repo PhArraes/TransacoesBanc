@@ -68,7 +68,7 @@ namespace PYPA.Transacoes.Domain.Tests
                                         valor,
                                         dateTimeProviderMock.Object);
 
-            transacao.UsuarioResponsavelId.Should().Be(contaOrigemId);
+            transacao.UsuarioResponsavelId.Should().Be(usuarioId);
             transacao.UsuarioResponsavel.Should().BeSameAs(usuario);
         }
 
