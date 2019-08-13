@@ -1,4 +1,5 @@
 ﻿using PYPA.Transacoes.Domain.Core;
+using PYPA.Transacoes.Domain.Exceptions;
 using PYPA.Transacoes.Domain.Interfaces.Core;
 using PYPA.Transacoes.Domain.Interfaces.Entities;
 using System;
@@ -24,9 +25,9 @@ namespace PYPA.Transacoes.Domain.Entities
             this.lancamentos = new List<ILancamento>();
         }
 
-        public Conta()
+        protected Conta()
         {
-
+            this.lancamentos = new List<ILancamento>();
         }
 
         public void AdicionarLancamento(ILancamento lancamento)
@@ -51,7 +52,7 @@ namespace PYPA.Transacoes.Domain.Entities
         private void DefinirSaldo(decimal valor)
         {
             if (valor < 0)
-                throw new Exception("O Saldo da conta não pode ser negativo.");
+                throw new DomainException("O Saldo da conta não pode ser negativo.");
             this.Saldo = valor;
         }
     }

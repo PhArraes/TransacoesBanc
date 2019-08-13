@@ -2,6 +2,7 @@
 using Moq;
 using PYPA.Transacoes.Domain.Core;
 using PYPA.Transacoes.Domain.Entities;
+using PYPA.Transacoes.Domain.Exceptions;
 using PYPA.Transacoes.Domain.Interfaces.Core;
 using PYPA.Transacoes.Domain.Interfaces.Entities;
 using System;
@@ -124,7 +125,7 @@ namespace PYPA.Transacoes.Domain.Tests
             transacao.Valor.Should().BeGreaterThan(0);
 
             valor = 0;
-            var ex = Assert.Throws<ArgumentException>(() => new Transacao(usuarioMock.Object,contaOrigemMock.Object,
+            var ex = Assert.Throws<DomainException>(() => new Transacao(usuarioMock.Object,contaOrigemMock.Object,
                                         umaContaDestino,
                                         valor,
                                         dateTimeProviderMock.Object));
@@ -176,7 +177,6 @@ namespace PYPA.Transacoes.Domain.Tests
                 l.ContaId.Should().Be(contaOrigemId);
                 l.Valor.Should().Be(valor);
                 l.Tipo.Should().Be(TipoDeLancamento.Debito);
-                l.TransacaoId.Should().Be(transacao.Id);
             });
 
             transacao.Valor.Should().Be(valor * contasDestino.Count);

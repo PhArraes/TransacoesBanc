@@ -4,6 +4,7 @@ using FluentAssertions;
 using PYPA.Transacoes.Domain.Core;
 using Moq;
 using PYPA.Transacoes.Domain.Interfaces.Core;
+using PYPA.Transacoes.Domain.Exceptions;
 
 namespace PYPA.Transacoes.Domain.Tests
 {
@@ -32,7 +33,7 @@ namespace PYPA.Transacoes.Domain.Tests
         public void Entity_Deve_Ser_Criado_Com_Id_Não_Nulo()
         {
 
-            var ex = Assert.Throws<ArgumentException>(() => new Entity(Guid.Empty, dateTimeProviderMock.Object));
+            var ex = Assert.Throws<DomainException>(() => new Entity(Guid.Empty, dateTimeProviderMock.Object));
             ex.Message.Should().Be("Entity created with invalid Empty Id");
         }
     }

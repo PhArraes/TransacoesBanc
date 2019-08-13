@@ -11,7 +11,7 @@ namespace PYPA.Transacoes.Domain.Entities
         {
         }
 
-        public Usuario()
+        protected Usuario()
         {
 
         }

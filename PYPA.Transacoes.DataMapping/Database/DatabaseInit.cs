@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Options;
 using PYPA.Transacoes.DataMapping.Database.Dapper;
 using PYPA.Transacoes.DataMapping.Database.Tables;
+using PYPA.Transacoes.DataMapping.Interfaces;
 using System;
 using System.Data.SQLite;
 using System.IO;
@@ -9,7 +11,13 @@ namespace PYPA.Transacoes.DataMapping.Database
 {
     public class DatabaseInit
     {
-        private string file = "transacoes.sqlite";
+        DbConfiguration connectionStringProvider;
+        public DatabaseInit(IOptions<DbConfiguration> dbConfiguration)
+        {
+            this.connectionStringProvider = dbConfiguration.Value;
+            file = connectionStringProvider.File;
+        }
+        private string file;
         public void Init()
         {
             SqlMapper.AddTypeHandler(new GuidTypeHandler());
@@ -29,11 +37,12 @@ namespace PYPA.Transacoes.DataMapping.Database
 
         private void CreateTables()
         {
-            SQLiteConnection dbConnection = new SQLiteConnection($"Data Source={file};Version=3;");
+            SQLiteConnection dbConnection = new SQLiteConnection(connectionStringProvider.ConnectionString);
             dbConnection.Open();
             new UsuariosInit().Init(dbConnection);
             new ContaInit().Init(dbConnection);
             new LancamentosInit().Init(dbConnection);
+            new TransacoesInit().Init(dbConnection);
             dbConnection.Close();
         }
     }

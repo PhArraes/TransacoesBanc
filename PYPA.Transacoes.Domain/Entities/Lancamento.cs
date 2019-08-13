@@ -1,4 +1,5 @@
 ﻿using PYPA.Transacoes.Domain.Core;
+using PYPA.Transacoes.Domain.Exceptions;
 using PYPA.Transacoes.Domain.Interfaces.Core;
 using PYPA.Transacoes.Domain.Interfaces.Entities;
 using System;
@@ -20,7 +21,7 @@ namespace PYPA.Transacoes.Domain.Entities
             this.DataDoLancamento = dataDoLancamento;
             this.DefinirValor(valor);
         }
-        public Lancamento()
+        protected Lancamento()
         {
 
         }
@@ -28,7 +29,7 @@ namespace PYPA.Transacoes.Domain.Entities
         private void DefinirValor(decimal valor)
         {
             if (valor <= 0)
-                throw new ArgumentException("O valor do lançamento é inválido, deve ser maior que zero.");
+                throw new DomainException("O valor do lançamento é inválido, deve ser maior que zero.");
             this.Valor = valor;
         }
     }

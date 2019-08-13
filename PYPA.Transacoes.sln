@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Transacoes.Facade", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Transacoes.DataMapping", "PYPA.Transacoes.DataMapping\PYPA.Transacoes.DataMapping.csproj", "{A77CBCBD-71B3-480A-8F84-1EB43C2F803C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadTests", "LoadTests", "{2537E35B-1DF7-45FE-8783-037F7BF3B8E2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PYPA.Transacoes.DataBaseInit.Console", "PYPA.Transacoes.DataBaseInit.Console\PYPA.Transacoes.DataBaseInit.Console.csproj", "{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PYPA.Transacoes.API", "PYPA.Transacoes.API\PYPA.Transacoes.API.csproj", "{6195FC95-E861-4E6A-A1F3-400E5C532E08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +39,10 @@ Global
 		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6195FC95-E861-4E6A-A1F3-400E5C532E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6195FC95-E861-4E6A-A1F3-400E5C532E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6195FC95-E861-4E6A-A1F3-400E5C532E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6195FC95-E861-4E6A-A1F3-400E5C532E08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

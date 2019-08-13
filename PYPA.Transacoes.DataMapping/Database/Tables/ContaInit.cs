@@ -35,6 +35,9 @@ namespace PYPA.Transacoes.DataMapping.Database.Tables
             dBConnection.Execute(sql, new Conta(dateTimeProvider));
             dBConnection.Execute(sql, new Conta(dateTimeProvider));
             dBConnection.Execute(sql, new Conta(dateTimeProvider));
+            dBConnection.Execute(sql, new Conta(dateTimeProvider));
+            dBConnection.Execute(sql, new Conta(dateTimeProvider));
+            dBConnection.Execute(sql, new Conta(dateTimeProvider));
         }
     }
 }

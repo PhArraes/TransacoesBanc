@@ -2,6 +2,7 @@
 using Moq;
 using PYPA.Transacoes.Domain.Core;
 using PYPA.Transacoes.Domain.Entities;
+using PYPA.Transacoes.Domain.Exceptions;
 using PYPA.Transacoes.Domain.Interfaces.Core;
 using PYPA.Transacoes.Domain.Interfaces.Entities;
 using System;
@@ -66,7 +67,7 @@ namespace PYPA.Transacoes.Domain.Tests
 
             conta.Saldo.Should().Be(lancamento.Valor);
 
-            var ex = Assert.Throws<Exception>(() => conta.AdicionarLancamento(lançamentoDébitoMock.Object));
+            var ex = Assert.Throws<DomainException>(() => conta.AdicionarLancamento(lançamentoDébitoMock.Object));
             ex.Message.Should().Be("O Saldo da conta não pode ser negativo.");
         }
         [Fact]
