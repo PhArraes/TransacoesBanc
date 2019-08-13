@@ -32,31 +32,31 @@ namespace PYPA.Transacoes.Domain.Tests
         [Fact]
         public void Conta_Deve_Ser_Uma_Entity()
         {
-            var conta = new Conta(númeroDaConta, dateTimeProviderMock.Object);
+            var conta = new Conta(dateTimeProviderMock.Object);
 
             conta.Should().BeAssignableTo<Entity>();
         }
 
         [Fact]
-        public void Conta_Deve_Ser_Criada_Com_Um_Número()
+        public void Conta_Deve_Ter_Um_Número()
         {
-            var conta = new Conta(númeroDaConta, dateTimeProviderMock.Object);
+            var conta = new Conta( dateTimeProviderMock.Object);
 
-            conta.Numero.Should().Be(númeroDaConta);
+            conta.Numero.Should().Be(It.IsAny<long>());
         }
 
         [Fact]
         public void Conta_Deve_Ser_Criada_Com_Saldo_Zero()
         {
             decimal ZERO = 0;
-            var conta = new Conta(númeroDaConta, dateTimeProviderMock.Object);
+            var conta = new Conta( dateTimeProviderMock.Object);
 
             conta.Saldo.Should().Be(ZERO);
         }
         [Fact]
         public void O_Saldo_Da_Conta_Sempre_Deve_Ser_Maior_Ou_Igual_A_Zero()
         {
-            var conta = new Conta(númeroDaConta, dateTimeProviderMock.Object);
+            var conta = new Conta(dateTimeProviderMock.Object);
             var lancamento = lançamentoCréditoMock.Object;
 
             conta.AdicionarLancamento(lancamento);
@@ -72,7 +72,7 @@ namespace PYPA.Transacoes.Domain.Tests
         [Fact]
         public void Deve_Ser_Possível_Adicionar_Lançamentos_Na_Conta_E_O_Saldo_Deve_Ser_Ajustado()
         {
-            var conta = new Conta(númeroDaConta, dateTimeProviderMock.Object);
+            var conta = new Conta(dateTimeProviderMock.Object);
             var lancamento = lançamentoCréditoMock.Object;
 
             conta.AdicionarLancamento(lancamento);

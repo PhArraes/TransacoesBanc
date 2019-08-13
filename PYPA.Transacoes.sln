@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Transacoes.Domain", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Transacoes.Domain.Tests", "PYPA.Transacoes.Domain.Tests\PYPA.Transacoes.Domain.Tests.csproj", "{D77E4773-658F-4A67-9693-3F9635CA2BAA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Transacoes.Facade", "PYPA.Transacoes.Facade\PYPA.Transacoes.Facade.csproj", "{0B2A7DA7-C99D-4AED-B7A2-333F79F6199D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Transacoes.DataMapping", "PYPA.Transacoes.DataMapping\PYPA.Transacoes.DataMapping.csproj", "{A77CBCBD-71B3-480A-8F84-1EB43C2F803C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadTests", "LoadTests", "{2537E35B-1DF7-45FE-8783-037F7BF3B8E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PYPA.Transacoes.DataBaseInit.Console", "PYPA.Transacoes.DataBaseInit.Console\PYPA.Transacoes.DataBaseInit.Console.csproj", "{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +29,24 @@ Global
 		{D77E4773-658F-4A67-9693-3F9635CA2BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D77E4773-658F-4A67-9693-3F9635CA2BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D77E4773-658F-4A67-9693-3F9635CA2BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B2A7DA7-C99D-4AED-B7A2-333F79F6199D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B2A7DA7-C99D-4AED-B7A2-333F79F6199D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B2A7DA7-C99D-4AED-B7A2-333F79F6199D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B2A7DA7-C99D-4AED-B7A2-333F79F6199D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A77CBCBD-71B3-480A-8F84-1EB43C2F803C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A77CBCBD-71B3-480A-8F84-1EB43C2F803C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A77CBCBD-71B3-480A-8F84-1EB43C2F803C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A77CBCBD-71B3-480A-8F84-1EB43C2F803C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{692FC220-5C9A-42D6-AB3F-8D4F4AFDA364} = {2537E35B-1DF7-45FE-8783-037F7BF3B8E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D87D8579-4CB3-4841-958D-CAF4B9885A12}

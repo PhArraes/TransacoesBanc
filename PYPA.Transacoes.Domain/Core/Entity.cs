@@ -14,10 +14,11 @@ namespace PYPA.Transacoes.Domain.Core
             SetId(id);
             CreatedAt = timeProvider.Now;
         }
+        protected Entity() { }
 
-
-        private void SetId(Guid id) {
-            if(id == Guid.Empty)
+        private void SetId(Guid id)
+        {
+            if (id == Guid.Empty)
                 throw new ArgumentException("Entity created with invalid Empty Id");
             this.Id = id;
         }

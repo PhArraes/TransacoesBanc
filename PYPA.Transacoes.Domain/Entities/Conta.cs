@@ -18,11 +18,15 @@ namespace PYPA.Transacoes.Domain.Entities
         }
 
         private List<ILancamento> lancamentos;
-        public Conta(long numero, IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
+        public Conta(IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
         {
-            this.Numero = numero;
             this.Saldo = 0;
             this.lancamentos = new List<ILancamento>();
+        }
+
+        public Conta()
+        {
+
         }
 
         public void AdicionarLancamento(ILancamento lancamento)

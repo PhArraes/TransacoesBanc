@@ -10,5 +10,10 @@ namespace PYPA.Transacoes.Domain.Entities
         public Usuario(IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
         {
         }
+
+        public Usuario()
+        {
+
+        }
     }
 }

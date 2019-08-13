@@ -16,9 +16,11 @@ namespace PYPA.Transacoes.Domain.Entities
         public IConta ContaOrigem { get; private set; }
         public List<Guid> ContasDestinoIds { get; private set; }
         public List<IConta> ContasDestino { get; private set; }
+        public List<ILancamento> Lancamentos { get; private set; }
         public decimal Valor { get; set; }
         public Transacao(IUsuario usuario, IConta contaOrigem, List<IConta> contasDestino, decimal valor, IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
         {
+            this.Lancamentos = new List<ILancamento>();
             this.UsuarioResponsavelId = usuario.Id;
             this.UsuarioResponsavel = usuario;
             this.ContaOrigemId = contaOrigem.Id;
@@ -36,15 +38,17 @@ namespace PYPA.Transacoes.Domain.Entities
 
         private void CriarLancamentoNaContaOrigem(IConta conta, decimal valor, IDateTimeProvider timeProvider)
         {
-            var lancamento = new Lancamento(this, conta, TipoDeLancamento.Debito, valor, this.CreatedAt, timeProvider);
+            var lancamento = new Lancamento( conta, TipoDeLancamento.Debito, valor, this.CreatedAt, timeProvider);
             conta.AdicionarLancamento(lancamento);
+            Lancamentos.Add(lancamento);
         }
 
 
         private void CriarLancamentoNaContaDestino(IConta conta, decimal valor, IDateTimeProvider timeProvider)
         {
-            var lancamento = new Lancamento(this, conta, TipoDeLancamento.Credito, valor, this.CreatedAt, timeProvider);
+            var lancamento = new Lancamento( conta, TipoDeLancamento.Credito, valor, this.CreatedAt, timeProvider);
             conta.AdicionarLancamento(lancamento);
+            Lancamentos.Add(lancamento);
         }
 
         private void DefinirValor(decimal valor)

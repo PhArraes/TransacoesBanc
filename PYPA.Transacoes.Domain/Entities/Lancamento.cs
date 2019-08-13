@@ -10,17 +10,19 @@ namespace PYPA.Transacoes.Domain.Entities
     public class Lancamento : Entity, ILancamento
     {
         public TipoDeLancamento Tipo { get; private set; }
-        public Guid TransacaoId { get; private set; }
         public Guid ContaId { get; private set; }
         public Decimal Valor { get; private set; }
         public DateTime DataDoLancamento { get; private set; }
-        public Lancamento(ITransacao transacao, IConta conta, TipoDeLancamento tipo, Decimal valor, DateTime dataDoLancamento, IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
+        public Lancamento(IConta conta, TipoDeLancamento tipo, Decimal valor, DateTime dataDoLancamento, IDateTimeProvider timeProvider) : base(Guid.NewGuid(), timeProvider)
         {
             this.Tipo = tipo;
-            this.TransacaoId = transacao.Id;
             this.ContaId = conta.Id;
             this.DataDoLancamento = dataDoLancamento;
             this.DefinirValor(valor);
+        }
+        public Lancamento()
+        {
+
         }
 
         private void DefinirValor(decimal valor)
